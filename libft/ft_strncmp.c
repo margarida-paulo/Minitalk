@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maggie <maggie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:09:00 by mvalerio          #+#    #+#             */
-/*   Updated: 2024/02/20 11:52:37 by maggie           ###   ########.fr       */
+/*   Updated: 2024/03/28 19:54:37 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-/* Returns 0 if the strings are equal, a positive number if s1 is greater than s2,
-and a negative number if s1 is smaller than s2. 
+/* Returns 0 if the strings are equal, a positive number if s1 is
+greater than s2, and a negative number if s1 is smaller than s2.
 */
 int	ft_strcmp(const char *s1, const char *s2)
 {

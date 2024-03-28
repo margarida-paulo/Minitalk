@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 12:59:53 by maggie            #+#    #+#             */
-/*   Updated: 2024/03/28 19:14:32 by mvalerio         ###   ########.fr       */
+/*   Updated: 2024/03/28 20:07:58 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,20 @@ void	ft_handle_signals(int signal)
 	static char	c;
 
 	if (signal == SIGUSR1)
-		c |= (0b1 << pos);
+		c |= (1 << pos);
 	pos++;
 	if (pos == 8)
 	{
 		pos = 0;
-		write(1, &c, 1);
+		if (c == NULL)
+			write(1, '\n', 1);
+		else
+			write(1, &c, 1);
 		c = 0;
 	}
 }
 
-int	main()
+int	main(void)
 {
 	ft_printf("The pid of your server is %d. Have fun!\n", getpid());
 	signal(SIGUSR1, ft_handle_signals);

@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:39:06 by mvalerio          #+#    #+#             */
-/*   Updated: 2024/03/28 18:10:11 by mvalerio         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:51:01 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include "get_next_line/get_next_line.h"
-# include <fcntl.h>
-# include <stdio.h>
 # include <limits.h>
 
 // Libft

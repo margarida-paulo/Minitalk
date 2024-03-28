@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 12:59:53 by maggie            #+#    #+#             */
-/*   Updated: 2024/03/28 19:15:49 by mvalerio         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:53:37 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 // There is a max_pid, check that
 int	ft_check_args(int argc, char *argv[])
 {
-	int pid;
-	int i;
+	int	pid;
+	int	i;
 
 	if (argc != 3)
 	{
@@ -29,7 +29,7 @@ int	ft_check_args(int argc, char *argv[])
 	{
 		if (!ft_isdigit(argv[1][i]) || pid > 4194304 || pid <= 0)
 		{
-			ft_printf("%sInvalid pid%s\n");
+			ft_printf("Invalid pid\n");
 			return (0);
 		}
 		i++;
@@ -37,7 +37,7 @@ int	ft_check_args(int argc, char *argv[])
 	return (1);
 }
 
-void	ft_bit_by_bit(char c, int pid)
+void	ft_bit_by_bit(char c, int pid, int sleep)
 {
 	int	bit;
 
@@ -49,24 +49,32 @@ void	ft_bit_by_bit(char c, int pid)
 		else
 			kill(pid, SIGUSR2);
 		bit++;
+		usleep(sleep);
 	}
-	usleep(100);
 }
 
 int	main(int argc, char *argv[])
 {
 	int		pid;
 	size_t	i;
+	int		length;
+	int		sleep;
 
 	if (!ft_check_args(argc, argv))
 		return (0);
 	pid = ft_atol(argv[1]);
-	kill(pid, SIGUSR1);
 	i = 0;
+	length = ft_strlen(argv[2]);
+	if (length <= 100)
+		sleep = 100;
+	else if (length <= 1000)
+		sleep = 500;
+	else
+		sleep = 1000;
 	while (argv[2][i])
 	{
-		ft_bit_by_bit(argv[2][i], pid);
+		ft_bit_by_bit(argv[2][i], pid, sleep);
 		i++;
 	}
-	ft_bit_by_bit(argv[2][i], pid);
+	ft_bit_by_bit(argv[2][i], pid, sleep);
 }

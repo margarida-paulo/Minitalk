@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maggie <maggie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 18:57:51 by mvalerio          #+#    #+#             */
-/*   Updated: 2024/02/20 13:05:46 by maggie           ###   ########.fr       */
+/*   Updated: 2024/03/28 19:54:24 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-/* Returns the length of the string s up to the first ocurrence of the character,
+/* Returns the length of the string s up to the first ocurrence
+of the character,
 not including the character itself.
 */
 size_t	ft_strlen_until_char(const char *s, char character)
