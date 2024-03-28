@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 12:59:53 by maggie            #+#    #+#             */
-/*   Updated: 2024/03/28 19:00:31 by mvalerio         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:15:49 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,17 @@ int	ft_check_args(int argc, char *argv[])
 
 void	ft_bit_by_bit(char c, int pid)
 {
-	static int	bit = 0;
+	int	bit;
 
-	if (bit < 8)
+	bit = 0;
+	while (bit < 8)
 	{
-		if ((c >> bit) & 1)
+		if (((c >> bit) & 1) == 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
 		bit++;
 	}
-	else
-		bit = 0;
 	usleep(100);
 }
 

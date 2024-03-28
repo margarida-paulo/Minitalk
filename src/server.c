@@ -6,7 +6,7 @@
 /*   By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 12:59:53 by maggie            #+#    #+#             */
-/*   Updated: 2024/03/28 19:03:58 by mvalerio         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:14:32 by mvalerio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,16 @@
 
 void	ft_handle_signals(int signal)
 {
-	static int	bit = 0;
+	static int	pos = 0;
 	static char	c;
-	char		operador;
 
-	c = 0;
-	operador = 0;
-	if (bit < 7)
+	if (signal == SIGUSR1)
+		c |= (0b1 << pos);
+	pos++;
+	if (pos == 8)
 	{
-        operador <<= bit;
-        if (signal == SIGUSR1)
-        {
-            c |= operador;
-        }
-        bit++;
-	}
-	else
-	{
+		pos = 0;
 		write(1, &c, 1);
-		bit = 0;
 		c = 0;
 	}
 }
