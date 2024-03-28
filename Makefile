@@ -6,7 +6,7 @@
 #    By: mvalerio <mvalerio@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/31 17:22:06 by mvalerio          #+#    #+#              #
-#    Updated: 2024/03/28 18:43:35 by mvalerio         ###   ########.fr        #
+#    Updated: 2024/03/28 22:07:31 by mvalerio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,21 @@ CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
 SERVER_SRC = src/server.c
 SERVER_OBJ = $(SERVER_SRC:.c=.o)
 
+CLIENT_BONUS = client_bonus
+SERVER_BONUS = server_bonus
+
+CLIENT_BONUS_SRC = bonus_src/client.c
+CLIENT_BONUS_OBJ = $(CLIENT_BONUS_SRC:.c=.o)
+
+SERVER_BONUS_SRC = bonus_src/server.c
+SERVER_BONUS_OBJ = $(SERVER_BONUS_SRC:.c=.o)
+
 %.o: %.c
 	@$(CC) $(STANDARD_FLAGS) -o $@ -c $<
 
 all: $(SERVER) $(CLIENT)
+
+bonus: $(SERVER_BONUS) $(CLIENT_BONUS)
 
 $(CLIENT): $(CLIENT_OBJ) $(OBJ)
 	@echo "Compiling $@"
@@ -49,6 +60,18 @@ $(SERVER): $(SERVER_OBJ) $(OBJ)
 	@$(CC) $(STANDARD_FLAGS) $(INCLUDE) $(SERVER_OBJ) $(LIBFT_A)  -o server > /dev/null
 	@echo "server has been created."
 
+$(CLIENT_BONUS): $(CLIENT_BONUS_OBJ) $(OBJ)
+	@echo "Compiling $@"
+	@make -C $(LIBFT_DIR) > /dev/null
+	@$(CC) $(STANDARD_FLAGS) $(INCLUDE) $(CLIENT_BONUS_OBJ) $(LIBFT_A)  -o client_bonus > /dev/null
+	@echo "client_bonus has been created."
+
+$(SERVER_BONUS): $(SERVER_BONUS_OBJ) $(OBJ)
+	@echo "Compiling $@"
+	@make -C $(LIBFT_DIR) > /dev/null
+	@$(CC) $(STANDARD_FLAGS) $(INCLUDE) $(SERVER_BONUS_OBJ) $(LIBFT_A)  -o server_bonus > /dev/null
+	@echo "server_bonus has been created."
+
 clean:
 	@rm -f src/*.o
 	@rm -f bonus_src/*.o
@@ -57,6 +80,7 @@ clean:
 
 fclean: clean
 	@rm -f $(SERVER) $(CLIENT)
+	@rm -f $(SERVER_BONUS) $(CLIENT_BONUS)
 	@make -C $(LIBFT_DIR) fclean > /dev/null
 	@echo All created files have been deleted.
 
